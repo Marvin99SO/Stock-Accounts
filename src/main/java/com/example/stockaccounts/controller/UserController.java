@@ -1,5 +1,7 @@
 package com.example.stockaccounts.controller;
 
+import com.example.stockaccounts.dto.AccountResponseDTO;
+import com.example.stockaccounts.dto.CreateAccountDTO;
 import com.example.stockaccounts.dto.CreateUserDTO;
 import com.example.stockaccounts.dto.UpdateUserDTO;
 import com.example.stockaccounts.entity.User;
@@ -52,5 +54,18 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId) {
         userService.deleteUserById(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{userId}/accounts")
+    public ResponseEntity<Void> createAccountById(@PathVariable("userId") String userId,
+                                              @RequestBody CreateAccountDTO accountDTO) {
+        userService.createAccount(userId, accountDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}/accounts")
+    public ResponseEntity<List<AccountResponseDTO>> getAccountById(@PathVariable("userId") String userId) {
+        var accounts =  userService.listAccounts(userId);
+        return ResponseEntity.ok(accounts);
     }
 }
