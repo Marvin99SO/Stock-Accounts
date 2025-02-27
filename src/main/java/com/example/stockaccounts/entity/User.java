@@ -93,4 +93,12 @@ public class User {
     public void setUpdatedTimeStamp(Instant updatedTimeStamp) {
         this.updatedTimeStamp = updatedTimeStamp;
     }
+
+    public List<Account> getAccountts() {
+        return accountts;
+    }
+
+    public void setAccountts(List<Account> accountts) {
+        this.accountts = accountts;
+    }
 }
