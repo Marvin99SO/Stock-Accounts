@@ -97,7 +97,7 @@ public class UserService {
                 accountDTO.number()
         );
 
-        var billingAddressCreated = billingAddressRepository.save(billingAddress);
+        billingAddressRepository.save(billingAddress);
     }
 
     public List<AccountResponseDTO> listAccounts(String userId) {

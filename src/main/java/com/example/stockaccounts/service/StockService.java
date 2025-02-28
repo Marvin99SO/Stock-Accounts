@@ -1,7 +1,6 @@
 package com.example.stockaccounts.service;
 
 import com.example.stockaccounts.dto.CreateStockDTO;
-import com.example.stockaccounts.dto.CreateUserDTO;
 import com.example.stockaccounts.entity.Stock;
 import com.example.stockaccounts.repository.StockRepository;
 import org.springframework.stereotype.Service;
