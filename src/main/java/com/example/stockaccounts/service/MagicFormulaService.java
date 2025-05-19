@@ -53,8 +53,11 @@ public class MagicFormulaService {
         return stockList.stream().map(MagicFormulaDTO::papel).collect(Collectors.toSet());
     }
 
-    private List<MagicFormulaDTO> documentExtract(Document document){
+    private List<MagicFormulaDTO> documentExtract(Document document) throws NullPointerException {
         Element table = document.select("table#resultado").first();
+        if (table == null) {
+            throw new NullPointerException();
+        }
 
         boolean header = true;
         List<MagicFormulaDTO> stockList = new ArrayList<>();
@@ -105,7 +108,6 @@ public class MagicFormulaService {
     }
 
     private List<MagicFormulaStock> applyRanking(List<MagicFormulaStock> staticStockList){
-        int size = staticStockList.size();
         List<MagicFormulaStock> stockList = new ArrayList<>(staticStockList);
 
         // Ranking por EV/EBIT (menor é melhor)

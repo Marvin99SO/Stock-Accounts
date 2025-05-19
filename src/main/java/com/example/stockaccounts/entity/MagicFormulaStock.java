@@ -1,11 +1,7 @@
 package com.example.stockaccounts.entity;
 
-import com.example.stockaccounts.dto.MagicFormulaDTO;
-import jakarta.persistence.Entity;
-
 import java.math.BigDecimal;
 
-//@Entity
 public class MagicFormulaStock {
     private String papel;
     private BigDecimal cotacao;
