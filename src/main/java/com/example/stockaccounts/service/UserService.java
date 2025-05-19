@@ -22,9 +22,9 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private UserRepository userRepository;
-    private AccountRepository accountRepository;
-    private BillingAddressRepository billingAddressRepository;
+    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
+    private final BillingAddressRepository billingAddressRepository;
 
     public UserService(
             UserRepository userRepository,

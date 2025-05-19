@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/v1/users")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -24,18 +25,14 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody CreateUserDTO createUserDTO) {
         var userId = userService.createUser(createUserDTO);
-        System.out.println(userId);
         return ResponseEntity.created(URI.create("/v1/users/" + userId.toString())).build();
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable("userId") String userId) {
-        var user = userService.getUserById(userId);
-        //return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        }
-        return ResponseEntity.notFound().build();
+        return userService.getUserById(userId)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new NoSuchElementException("Usuário com Id: " + userId + " não encontrado"));
     }
 
     @GetMapping

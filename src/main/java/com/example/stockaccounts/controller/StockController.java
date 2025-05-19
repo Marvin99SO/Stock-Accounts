@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/stocks")
 public class StockController {
-    private StockService stockService;
+    private final StockService stockService;
 
     public StockController(StockService stockService) {
         this.stockService = stockService;
